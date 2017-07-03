@@ -1,0 +1,13 @@
+{
+  "generator-jetray": {
+    "portletName": "com.ravikuwi.reactjs",
+    "portletTitle": "Product CRUD portlet",
+    "portletCategory": "sample",
+    "framework": "React",
+    "buildsys": "npm",
+    "portletInstanceable": "false",
+    "appFile": "index.html",
+    "portletPath": "com.ravikuwi.reactjs",
+    "portletNameCleaned": "com_ravikuwi_reactjs"
+  }
+}
