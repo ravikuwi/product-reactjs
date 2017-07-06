@@ -21,7 +21,7 @@ module.exports = {
       manifest: require(path.join(__dirname,'react_runtime','react_runtime-manifest.json'))
     }),
     // avoid issues in things like React-Router that test for the value of NODE_ENV
-  //  new webpack.DefinePlugin({ 'process.env.NODE_ENV': 'production' })
+    //new webpack.DefinePlugin({ 'process.env.NODE_ENV': 'prod' })
   ],
   module: {
     loaders: [
@@ -32,6 +32,10 @@ module.exports = {
         options: {
           presets: ['es2015', 'react']
         }
+      },
+      {
+          test: /\.css$/,
+          loader: 'style-loader!css-loader'
       }
     ],
   },

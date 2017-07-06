@@ -16,7 +16,8 @@ export default function(props) {
                         </div>
                         <div className="controls">
                             <button  className="edit">Edit</button>
-                            <button  className="delete">Delete</button>
+                            <Link  className="btn btn-pink"   role="button"  to={'/edit/'+product.id}>Edit</Link>
+                            <button  onClick={props.deleteProduct.bind(null, product.id)} className="delete">Delete</button>
                         </div>
                     </div>
                 );

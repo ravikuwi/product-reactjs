@@ -1,9 +1,12 @@
-import React from 'react';
-import _ from 'lodash';
-import ProdList from './views/product-list';
+import React from 'react'
+import _ from 'lodash'
+import ProdList from './views/product-list'
+import * as productApi from './api/product-api'
+import {Link} from 'react-router'
 
 
-const ProductListListContainer = React.createClass({
+
+const ProductListContainer = React.createClass({
 
     getInitialState: function() {
         return {
@@ -12,19 +15,39 @@ const ProductListListContainer = React.createClass({
     },
 
     componentDidMount: function() {
-        var _this = this;
-        $.get('http://localhost:3000/products').then(function(response) {
-            _this.setState({products: response})
-        });
+        productApi.getAllProducts().then(products => {
+            console.info("products",products);
+            this.setState({products: products})
+    });
     },
+
+
+
+
+      deleteProduct: function(productId) {
+          productApi.deleteProduct(productId).then(() => {
+              const newProducts = _.filter(this.state.products, product => product.id != productId);
+          this.setState({products: newProducts})
+      });
+      },
 
 
     render: function() {
         return (
-            <ProdList products={this.state.products} />
+            <div className="products-list">
+                <Link to={"/add"}> Add </Link>
+                <ProdList products={this.state.products} deleteProduct={productApi.deleteProduct}/>
+           </div>
         );
     }
 
 });
 
-export default ProductListListContainer;
+/*const mapStateProps = function(store) {
+    return {
+        products: store.products
+    };
+};*/
+
+
+export default ProductListContainer;

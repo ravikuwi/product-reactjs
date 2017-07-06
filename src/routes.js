@@ -8,6 +8,7 @@ import SearchLayout from './components/search-layout';
 // Pages
 import Home from './components/home';
 import ProductProfile from './components/products/views/product-profile'
+import ProductForm from './components/products/views/product-form'
 import ProductListContainer from './components/products/product-list-container'
 
 
@@ -21,6 +22,8 @@ export default (
                     <IndexRoute component={ProductListContainer} />
                 </Route>
                 <Route path=":productId" component={ProductProfile} />
+                <Route path="/edit/:productId" component={ProductForm} />
+                <Route path="/add" component={ProductForm} />
             </Route>
 
         </Route>

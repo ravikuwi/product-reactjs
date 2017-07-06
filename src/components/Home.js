@@ -5,8 +5,7 @@ var Home = React.createClass({
     render:function () {
         return(
             <div>
-                <h1>Welcome to the Home Page</h1>
-                <Link to="/products" activeClassName="active">Products</Link>
+                <h1>Welcome to the Products Home Page. All you need to know about the TV products.</h1>
             </div>
 
         );
