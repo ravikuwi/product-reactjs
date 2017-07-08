@@ -47,13 +47,18 @@ main {
 
 }
 
-.btn{
+.btn {
     border-radius: 0;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
     background: none;
     boder: 3px solid;
+}
+
+
+.error{
+border: 2px solid red;
 }
 
 .btn-success{

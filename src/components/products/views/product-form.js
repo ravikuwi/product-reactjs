@@ -1,10 +1,11 @@
 import React from 'react';
 import * as productApi from '../api/product-api'
+import {Link} from 'react-router'
 
 const ProductForm = React.createClass({
 
     getInitialState: function () {
-        return {id:"", productName: "", description: "", price: "", sku: "", ratings:"", updateProduct:false, errors: {}}
+        return {id:"", productName: "", description: "", price: "", sku: "", ratings:"", updateProduct:false, errors: {},currentHeader:"", message:""}
     },
 
 
@@ -21,6 +22,9 @@ const ProductForm = React.createClass({
             });
 
             this.state.updateProduct=true;
+            this.setState({currentHeader:"Update the Product"});
+        }else{
+            this.setState({currentHeader:"Add a new Product"});
         }
     },
 
@@ -38,7 +42,6 @@ const ProductForm = React.createClass({
 
         console.log("After validation");
         if(this.state.updateProduct){
-            console.log("in update product");
             productApi.updateProduct({
                 id:this.state.id,
                 name:this.state.productName,
@@ -47,6 +50,7 @@ const ProductForm = React.createClass({
                 sku:this.state.sku,
                 ratings:this.state.ratings
             });
+            this.setState({message:"Updated the product Successfully."});
         }else {
             productApi.createProduct({
                 name: this.state.productName,
@@ -55,28 +59,18 @@ const ProductForm = React.createClass({
                 sku: this.state.sku,
                 ratings: this.state.ratings
             });
-        }
-
-
-        if(!this.state.updateProduct) {
             this.refs.productName.value = "";
             this.refs.description.value = "";
             this.refs.price.value = "";
             this.refs.sku.value = "";
             this.refs.ratings.value = "";
             this.setState(this.getInitialState());
-        }
-
-
-    },
-
-    getHeader:function(){
-        if(this.state.updateProduct){
-             return(<h1>Update the Product</h1>);
-        }else{
-            return(<h1>Add a new Product</h1>);
+            this.setState({message:"Added new product Successfully.",
+                           currentHeader:"Add a new Product"});
         }
     },
+
+
 
     getButtonText:function(){
         if(this.state.updateProduct){
@@ -95,54 +89,62 @@ const ProductForm = React.createClass({
     validate: function () {
         var errors = {}
         if(this.state.productName == "") {
-            errors.name = "Product Name is required";
+            errors.name = "error";
         }
         if(this.state.description == "") {
-            errors.description = "Product Description is required";
+            errors.description = "error";
         }
         if(this.state.price == "") {
-            errors.price = "Product price is required";
+            errors.price = "error";
         }
-
+        if(this.state.sku == "") {
+            errors.sku = "error";
+        }
         if(this.state.ratings == "") {
-            errors.ratings = "Product rating is required";
+            errors.rating = "error";
         }
         return errors;
     },
 
+
+
     render: function() {
         return (
             <div className="product-profile">
-            {this.getHeader()}
+              <h1>{this.state.currentHeader}</h1>
+
+                <h4>{this.state.message} {this.state.message
+            ? <Link className="btn btn-success btn-sm" to="/products">Back</Link> : ""}</h4>
                 <form ref='product_form' onSubmit={this.onSubmit}>
-                    <div className="product-detail">
-                       <label>
+
+                     <div className="product-detail">
+                        <label>
                           <span className="product-label"> Name:</span>
-                          <input type="text" name="productName"  ref="productName" onChange={this._onChange}/>
+                          <input type="text" name="productName"  className={this.state.errors.name} ref="productName" onChange={this._onChange}/>
                        </label>
                     </div>
                     <div className="product-detail">
                         <label>
                             <span className="product-label"> Description:</span>
-                            <input type="text" name="description"  ref="description" onChange={this._onChange}/>
+                            <input type="text" name="description" className={this.state.errors.description} ref="description" onChange={this._onChange}/>
                         </label>
                     </div>
                     <div className="product-detail">
                         <label>
                             <span className="product-label"> Price:</span>
-                            <input type="text" name="price" ref="price" onChange={this._onChange} />
+                            <input type="text" name="price" ref="price" className={this.state.errors.price} onChange={this._onChange} />
                         </label>
                     </div>
                     <div className="product-detail">
                         <label>
                             <span className="product-label"> SKU:</span>
-                            <input type="text" name="sku" ref="sku" onChange={this._onChange}/>
+                            <input type="text" name="sku" ref="sku" className={this.state.errors.sku} onChange={this._onChange}/>
                         </label>
                     </div>
                     <div className="product-detail">
                         <label>
                             <span className="product-label"> Rating:</span>
-                            <input type="text" name="ratings" ref="ratings" onChange={this._onChange}/>
+                            <input type="text" name="ratings" ref="ratings" className={this.state.errors.rating} onChange={this._onChange}/>
                         </label>
                     </div>
                     <div className="form-controls">

@@ -22,12 +22,10 @@ const ProductListContainer = React.createClass({
     },
 
 
-
-
       deleteProduct: function(productId) {
           productApi.deleteProduct(productId).then(() => {
               const newProducts = _.filter(this.state.products, product => product.id != productId);
-          this.setState({products: newProducts})
+              this.setState({products: newProducts})
       });
       },
 
@@ -36,18 +34,12 @@ const ProductListContainer = React.createClass({
         return (
             <div className="products-list">
                 <Link to={"/add"} className="btn btn-info btn-sm"> Add </Link>
-                <ProdList products={this.state.products} deleteProduct={productApi.deleteProduct}/>
+                <ProdList products={this.state.products} deleteProduct={this.deleteProduct}/>
            </div>
         );
     }
 
 });
-
-/*const mapStateProps = function(store) {
-    return {
-        products: store.products
-    };
-};*/
 
 
 export default ProductListContainer;
