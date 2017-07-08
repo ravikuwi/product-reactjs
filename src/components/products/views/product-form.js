@@ -117,37 +117,37 @@ const ProductForm = React.createClass({
                 <form ref='product_form' onSubmit={this.onSubmit}>
                     <div className="product-detail">
                        <label>
-                          <span class="product-label"> Name:</span>
+                          <span className="product-label"> Name:</span>
                           <input type="text" name="productName"  ref="productName" onChange={this._onChange}/>
                        </label>
                     </div>
                     <div className="product-detail">
                         <label>
-                            <span class="product-label"> Description:</span>
+                            <span className="product-label"> Description:</span>
                             <input type="text" name="description"  ref="description" onChange={this._onChange}/>
                         </label>
                     </div>
                     <div className="product-detail">
                         <label>
-                            <span class="product-label"> Price:</span>
+                            <span className="product-label"> Price:</span>
                             <input type="text" name="price" ref="price" onChange={this._onChange} />
                         </label>
                     </div>
                     <div className="product-detail">
                         <label>
-                            <span class="product-label"> SKU:</span>
+                            <span className="product-label"> SKU:</span>
                             <input type="text" name="sku" ref="sku" onChange={this._onChange}/>
                         </label>
                     </div>
                     <div className="product-detail">
                         <label>
-                            <span class="product-label"> Ratings:</span>
+                            <span className="product-label"> Rating:</span>
                             <input type="text" name="ratings" ref="ratings" onChange={this._onChange}/>
                         </label>
                     </div>
                     <div className="form-controls">
-                       <button type="submit" className="submit" >{this.getButtonText()}</button>
-                       <button type="reset" className="reset">Reset</button>
+                       <button type="submit" className="submit btn btn-success btn-sm" >{this.getButtonText()}</button>
+                       <button type="reset" className="reset btn btn-danger btn-sm">Reset</button>
                     </div>
                 </form>
             </div>

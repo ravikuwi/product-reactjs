@@ -15,20 +15,113 @@ main {
     flex: 1;
 }
 
-.details{
+.details {
     float: left;
 }
 
-.edit{
-    margin-left:20px;
-    margin-right:20px;
-}
-
-.data-list-item{
-    margin-bottom:10px;
+#portlet_com_ravikuwi_reactjs h2.portlet-title-text{
+    display:none;
 }
 
 
-aside a{
+.product-id, .product-price, .product-rating {
+    width: 200px;
+    max-width: 200px;
+    text-align: left;
+    float: left;
+    font-size:large;
+}
+
+
+.product-profile h1{
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight:600;
+}
+
+.btn-nav{
+    display: block;
+    width:100px;
+    max-width:100px;
+    margin-bottom: 4px;
+
+}
+
+.btn{
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    background: none;
+    boder: 3px solid;
+}
+
+.btn-success{
+    color:#34B88B;
+}
+
+.btn-info{
+    color:#365D9E;
+}
+
+.btn-danger{
+    color:#DF584C;
+}
+
+.btn-primary{
+    color: #44A5AA;
+}
+
+.back{
+    margin-top: 20px;
+}
+
+.product-label{
+    width: 150px;
+    max-width: 150px;
+    display: inline-block;
+    font-size: larger;
+    font-weight: 600;
+}
+
+.form-controls{
+    margin-top:20px;
+}
+
+.submit{
+    margin-right: 15px;
+}
+
+.product-id{
+    padding-left:0;
+}
+
+.product-id-header, .product-price-header  {
+    width: 200px;
+    max-width: 200px;
+    text-align: left;
+    float: left;
+}
+
+.product-id-header, .product-price-header, .product-rating-header  {
+    font-size: larger;
+    font-weight: 600;
+}
+
+.product-header{
+    margin: 20px 0;
+}
+
+
+.edit {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.data-list-item {
+    margin-bottom: 10px;
+}
+
+aside a {
     display: block;
 }

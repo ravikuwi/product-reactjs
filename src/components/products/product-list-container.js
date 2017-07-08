@@ -35,7 +35,7 @@ const ProductListContainer = React.createClass({
     render: function() {
         return (
             <div className="products-list">
-                <Link to={"/add"}> Add </Link>
+                <Link to={"/add"} className="btn btn-info btn-sm"> Add </Link>
                 <ProdList products={this.state.products} deleteProduct={productApi.deleteProduct}/>
            </div>
         );

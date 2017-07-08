@@ -1,5 +1,7 @@
 import React from 'react';
 import * as productApi from '../api/product-api'
+import {Link} from 'react-router'
+import StarRatingComponent from 'react-star-rating-component';
 
 
 const ProductProfile = React.createClass({
@@ -23,34 +25,41 @@ const ProductProfile = React.createClass({
                 <h1>Details for Product Id: {this.props.params.productId}</h1>
                 <div className="product-detail">
                    <label>
-                      <span class="product-label"> Name:</span>
+                      <span className="product-label"> Name:</span>
                       <span className="product-info"> {this.state.product.name}   </span>
                    </label>
                 </div>
                 <div className="product-detail">
                     <label>
-                        <span class="product-label"> Description:</span>
+                        <span className="product-label"> Description:</span>
                         <span className="product-info"> {this.state.product.description} </span>
                     </label>
                 </div>
                 <div className="product-detail">
                     <label>
-                        <span class="product-label"> Price:</span>
-                        <span className="product-info"> {this.state.product.price}   </span>
+                        <span className="product-label"> Price:</span>
+                        <span className="product-info"> ${this.state.product.price}   </span>
                     </label>
                 </div>
                 <div className="product-detail">
                     <label>
-                        <span class="product-label"> SKU:</span>
+                        <span className="product-label"> SKU:</span>
                         <span className="product-info"> {this.state.product.sku}   </span>
                     </label>
                 </div>
                 <div className="product-detail">
                     <label>
-                        <span class="product-label"> Ratings:</span>
-                        <span className="product-info"> {this.state.product.ratings}   </span>
+                        <span className="product-label"> Ratings:</span>
+                        <span className="product-info">
+                           <StarRatingComponent
+                             name="prodRating"
+                             editing={false}
+                             starCount={5}
+                             value={this.state.product.ratings}
+                        />  </span>
                     </label>
                 </div>
+                <Link to="/products" className="btn btn-info back">Back</Link>
             </div>
         );
     }
