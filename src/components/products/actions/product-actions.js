@@ -9,22 +9,22 @@ export function getProductsSuccess(products) {
 
 export function deleteProductSuccess(productId) {
     return {
-        type: 'DELETE_PRODUCT_SUCCESS',
+        type: 'DELETE_PRODUCT',
         productId
     };
 }
 
-export function productProfileSuccess(product) {
+export function getProductProfile(productId) {
     return {
-        type: 'PRODUCT_PROFILE_SUCCESS',
-        product
+        type: 'GET_PRODUCT_PROFILE',
+        productId
     };
 }
 
 
-export function addProductSuccess(product) {
+export function addProduct(product) {
     return {
-        type: 'ADD_PRODUCT_SUCCESS',
+        type: 'ADD_PRODUCT',
         product
     };
 }
@@ -32,7 +32,7 @@ export function addProductSuccess(product) {
 
 export function editProductSuccess(product) {
     return {
-        type: 'EDIT_PRODUCT_SUCCESS',
+        type: 'EDIT_PRODUCT',
         product
     };
 }

@@ -1,10 +1,15 @@
 import axios from 'axios';
-import { getProductsSuccess, deleteProductSuccess, productProfileSuccess } from '../actions/product-actions'
+import store from '../../../store'
+import { getProductsSuccess, deleteProductSuccess, getProductProfile, addProduct, editProductSuccess} from '../actions/product-actions'
 
 
 export function getAllProducts() {
     return axios.get('http://localhost:8080/o/products/products/')
-            .then(response => response.data);
+            .then(response => {
+                store.dispatch(getProductsSuccess(response.data));
+                return response.data;
+            });
+
 }
 
 
@@ -33,7 +38,12 @@ export function updateProduct(product) {
 
 
 export function deleteProduct(productId) {
-    return axios.delete('http://localhost:8080/o/products/products/' + productId);
+    return axios.delete('http://localhost:8080/o/products/products/' + productId).then(
+        response=>{
+            store.dispatch(deleteProductSuccess(productId));
+            return response;
+        }
+    );
 }
 
 

@@ -5,7 +5,7 @@ import productReducer from './product-reducer';
 
 //combine reducers
 var reducers = combineReducers({
-    productState: productReducer
+     productState:productReducer,
 });
 
 export default reducers;
