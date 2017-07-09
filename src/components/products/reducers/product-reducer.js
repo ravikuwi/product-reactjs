@@ -2,31 +2,35 @@ import _ from 'lodash';
 
 const initialState = {
     products: [],
-    productProfile: {
-    }
+    product: {id:"", productName: "", description: "", price: "", sku: "", ratings:"", updateProduct:false, errors: {},currentHeader:"", message:""}
+
 };
 
 const productReducer = function(state = initialState, action) {
 
     switch(action.type) {
 
-        case 'GET_USERS_SUCCESS':
-            return Object.assign({}, state, { users: action.users });
+            case 'GET_PRODUCTS_SUCCESS':
+                return Object.assign({}, state, { products: action.products });
 
-        case 'DELETE_PRODUCT_SUCCESS':
 
-            // Use lodash to create a new user array without the user we want to remove
-            const newProducts = _.filter(state.products, product => product.id != action.userId);
-            return Object.assign({}, state, { products: newProducts });
+            case 'DELETE_PRODUCT':
 
-        case 'PRODUCT_PROFILE_SUCCESS':
-            return Object.assign({}, state, { productProfile : action.product });
+                // Use lodash to create a new user array without the user we want to remove
+                const newProducts = _.filter(state.products, product => product.id != action.productId);
+                return Object.assign({}, state, { products: newProducts });
 
-        case 'ADD_PROFILE_SUCCESS':
-            return Object.assign({}, state, { productProfile : action.product });
 
-        case 'EDIT_PRODUCT_SUCCESS':
-            return Object.assign({}, state, { productProfile : action.product });
+            case 'GET_PRODUCT_PROFILE':
+                return Object.assign({}, state, { product : action.product });
+
+
+            case 'ADD_PRODUCT':
+                return Object.assign({}, state, { product : action.product });
+
+
+            case 'EDIT_PRODUCT':
+                return Object.assign({}, state, { product : action.product });
 
     }
 

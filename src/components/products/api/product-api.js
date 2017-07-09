@@ -1,18 +1,24 @@
 import axios from 'axios';
-import { getProductsSuccess, deleteProductSuccess, productProfileSuccess } from '../actions/product-actions'
+import store from '../../../store'
+import { getProductsSuccess, deleteProductSuccess, getProductProfile, addProduct, editProductSuccess} from '../actions/product-actions'
 
 
 export function getAllProducts() {
     return axios.get('http://localhost:8080/o/products/products/')
-            .then(response => response.data);
+            .then(response => {
+                store.dispatch(getProductsSuccess(response.data));
+                return response.data;
+            });
+
 }
 
 
 export function getProductById(productId) {
-    console.log("in getproduct by id");
-    console.log(productId);
     return axios.get('http://localhost:8080/o/products/products/' + productId)
-        .then(response=>response.data);
+        .then(response=>{
+          store.dispatch(getProductProfile(response.data));
+          return  response.data
+        });
 }
 
 
@@ -26,22 +32,26 @@ export function updateProduct(product) {
         ratings:product.ratings
     })
         .then(function (response) {
-            console.log(response);
             return response.data;
         })
         .catch(function (error) {
-            console.log(error);
+            console.error(error);
         });
 }
 
 
 export function deleteProduct(productId) {
-    return axios.delete('http://localhost:8080/o/products/products/' + productId);
+    return axios.delete('http://localhost:8080/o/products/products/' + productId).then(
+        response=>{
+            store.dispatch(deleteProductSuccess(productId));
+            return response;
+        }
+    );
 }
 
 
 export function createProduct(product) {
-    console.info("product from submit",product);
+
     return axios.post('http://localhost:8080/o/products/products/', {
         name: product.name,
         description:product.description,
@@ -50,11 +60,10 @@ export function createProduct(product) {
         ratings:product.ratings
        })
         .then(function (response) {
-            console.log(response);
             return response.data;
         })
         .catch(function (error) {
-            console.log(error);
+            console.error(error);
         });
 }
 
