@@ -14,10 +14,10 @@ export function deleteProductSuccess(productId) {
     };
 }
 
-export function getProductProfile(productId) {
+export function getProductProfile(product) {
     return {
         type: 'GET_PRODUCT_PROFILE',
-        productId
+        product
     };
 }
 

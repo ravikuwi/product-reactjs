@@ -30,7 +30,6 @@ const ProductListContainer = React.createClass({
 
 
 const mapStateToProps = function(store) {
-    console.info("store in product list container",store);
     return {
         products: store.productState.products
     };

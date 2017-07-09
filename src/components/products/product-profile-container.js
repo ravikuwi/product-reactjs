@@ -2,25 +2,28 @@ import React from 'react';
 import * as productApi from './api/product-api'
 import {Link} from 'react-router'
 import ProductProfile from './views/product-profile'
+import store from '../../store'
+import { connect } from 'react-redux'
 
 
 const ProductProfileContainer = React.createClass({
 
-    getInitialState: function() {
-        return {
-            product: {}
-        }
-    },
 
     componentDidMount:function(){
-        productApi.getProductById(this.props.params.productId).then(product => {
-        this.setState({product: product})
-    });
+        productApi.getProductById(this.props.params.productId);
     },
 
     render: function() {
-        return(<ProductProfile product={this.state.product}/>);
+        return(<ProductProfile product={this.props.product}/>);
     }
 });
 
-export default ProductProfileContainer;
+const mapStateToProps = function(store) {
+
+    return {
+        product: store.productState.product
+    };
+};
+
+
+export default connect(mapStateToProps)(ProductProfileContainer);

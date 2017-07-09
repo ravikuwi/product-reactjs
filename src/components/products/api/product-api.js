@@ -15,7 +15,10 @@ export function getAllProducts() {
 
 export function getProductById(productId) {
     return axios.get('http://localhost:8080/o/products/products/' + productId)
-        .then(response=>response.data);
+        .then(response=>{
+          store.dispatch(getProductProfile(response.data));
+          return  response.data
+        });
 }
 
 
