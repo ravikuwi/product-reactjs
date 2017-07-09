@@ -1,9 +1,7 @@
 import _ from 'lodash';
 
 const initialState = {
-    products: [],
-    product: {id:"", productName: "", description: "", price: "", sku: "", ratings:"", updateProduct:false, errors: {},currentHeader:"", message:""}
-
+    products: []
 };
 
 const productReducer = function(state = initialState, action) {
@@ -15,22 +13,9 @@ const productReducer = function(state = initialState, action) {
 
 
             case 'DELETE_PRODUCT':
-
                 // Use lodash to create a new user array without the user we want to remove
                 const newProducts = _.filter(state.products, product => product.id != action.productId);
                 return Object.assign({}, state, { products: newProducts });
-
-
-            case 'GET_PRODUCT_PROFILE':
-                return Object.assign({}, state, { product : action.product });
-
-
-            case 'ADD_PRODUCT':
-                return Object.assign({}, state, { product : action.product });
-
-
-            case 'EDIT_PRODUCT':
-                return Object.assign({}, state, { product : action.product });
 
     }
 

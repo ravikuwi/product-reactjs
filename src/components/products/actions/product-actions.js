@@ -14,25 +14,3 @@ export function deleteProductSuccess(productId) {
     };
 }
 
-export function getProductProfile(product) {
-    return {
-        type: 'GET_PRODUCT_PROFILE',
-        product
-    };
-}
-
-
-export function addProduct(product) {
-    return {
-        type: 'ADD_PRODUCT',
-        product
-    };
-}
-
-
-export function editProductSuccess(product) {
-    return {
-        type: 'EDIT_PRODUCT',
-        product
-    };
-}

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import store from '../../../store'
-import { getProductsSuccess, deleteProductSuccess, getProductProfile, addProduct, editProductSuccess} from '../actions/product-actions'
+import { getProductsSuccess, deleteProductSuccess } from '../actions/product-actions'
+import {getProductProfile, addProduct, editProduct} from '../actions/product-form-actions'
 
 
 export function getAllProducts() {
@@ -13,10 +14,10 @@ export function getAllProducts() {
 }
 
 
-export function getProductById(productId) {
+export function getProductById(productId,forEdit) {
     return axios.get('http://localhost:8080/o/products/products/' + productId)
         .then(response=>{
-          store.dispatch(getProductProfile(response.data));
+                store.dispatch(getProductProfile(response.data,forEdit));
           return  response.data
         });
 }

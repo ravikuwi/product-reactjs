@@ -2,6 +2,8 @@ import React from 'react';
 import * as productApi from './api/product-api'
 import {Link} from 'react-router'
 import ProductForm from './views/product-form'
+import store from '../../store'
+import { connect } from 'react-redux'
 
 const ProductFormContainer = React.createClass({
 
@@ -12,20 +14,11 @@ const ProductFormContainer = React.createClass({
 
     componentDidMount:function(){
 
+        console.log("in component did mount");
         if(this.props.params.productId) {
-            var curProduct = this.state.product;
-            productApi.getProductById(this.props.params.productId).then(product => {
-                curProduct.productName=product.name;
-                curProduct.description=product.description;
-                curProduct.price=product.price;
-                curProduct.sku=product.sku;
-                curProduct.ratings=product.ratings;
-                curProduct.id=product.id;
-                curProduct.updateProduct=true;
-                curProduct.currentHeader="Update the Product";
-                this.setState({curProduct,});
-           });
-
+            //var curProduct = this.state.product;
+            console.log("getting product for edit");
+            productApi.getProductById(this.props.params.productId,true);
 
         }else{
             const product=this.state.product;
@@ -113,8 +106,16 @@ const ProductFormContainer = React.createClass({
 
 
     render: function() {
-        return (<ProductForm product={this.state.product}  onSubmit={this.onSubmit} onChange={this.onChange} validate={this.validate} getButtonText={this.getButtonText}/>);
+        return (<ProductForm product={this.props.product}  onSubmit={this.onSubmit} onChange={this.onChange} validate={this.validate} getButtonText={this.getButtonText}/>);
+
     }
 });
 
-export default ProductFormContainer;
+const mapStateToProps = function(store) {
+    console.info("mapStateToProps",store);
+    return {
+        product: store.productProfile.product
+    };
+};
+
+export default connect(mapStateToProps)(ProductFormContainer);
