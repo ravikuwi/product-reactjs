@@ -16,7 +16,6 @@ const ProductListContainer = React.createClass({
 
     componentDidMount: function() {
         productApi.getAllProducts().then(products => {
-            console.info("products",products);
             this.setState({products: products})
     });
     },

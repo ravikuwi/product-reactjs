@@ -14,7 +14,6 @@ const ProductProfileContainer = React.createClass({
 
     componentDidMount:function(){
         productApi.getProductById(this.props.params.productId).then(product => {
-            console.info("product",product);
         this.setState({product: product})
     });
     },

@@ -35,10 +35,8 @@ const ProductFormContainer = React.createClass({
     },
 
     onSubmit:function(e){
-        console.log("in submit");
         e.preventDefault();
         var errors = this.validate();
-        console.info("errors",errors);
         if(Object.keys(errors).length != 0) {
             const product = this.state.product;
             product.errors=errors;
@@ -48,7 +46,7 @@ const ProductFormContainer = React.createClass({
             return;
         }
 
-        console.log("After validation");
+
         if(this.state.product.updateProduct){
             productApi.updateProduct({
                 id:this.state.product.id,
@@ -71,7 +69,6 @@ const ProductFormContainer = React.createClass({
             });
             this.setState(this.getInitialState());
             const product = this.getInitialState().product;
-            console.info("product value after creating",product);
             product.message="Added new product Successfully.";
             product.currentHeader="Add a new Product";
             this.setState({product,});
