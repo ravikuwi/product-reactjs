@@ -4,6 +4,7 @@ import {Link} from 'react-router'
 import ProductForm from './views/product-form'
 import store from '../../store'
 import { connect } from 'react-redux'
+import { addProduct} from './actions/product-form-actions'
 
 const ProductFormContainer = React.createClass({
 
@@ -13,21 +14,15 @@ const ProductFormContainer = React.createClass({
 
 
     componentDidMount:function(){
-
-        console.log("in component did mount");
         if(this.props.params.productId) {
-            //var curProduct = this.state.product;
-            console.log("getting product for edit");
             productApi.getProductById(this.props.params.productId,true);
-
         }else{
-            const product=this.state.product;
-            product.currentHeader="Add a new Product";
-            this.setState({product,});
+            store.dispatch(addProduct());
         }
     },
 
     onSubmit:function(e){
+        console.log("in submit");
         e.preventDefault();
         var errors = this.validate();
         if(Object.keys(errors).length != 0) {
@@ -38,8 +33,6 @@ const ProductFormContainer = React.createClass({
             });
             return;
         }
-
-
         if(this.state.product.updateProduct){
             productApi.updateProduct({
                 id:this.state.product.id,
@@ -114,7 +107,7 @@ const ProductFormContainer = React.createClass({
 const mapStateToProps = function(store) {
     console.info("mapStateToProps",store);
     return {
-        product: store.productProfile.product
+        product: store.productProfile
     };
 };
 

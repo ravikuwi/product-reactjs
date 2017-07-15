@@ -1,7 +1,7 @@
 
 
 const initialState = {
-    product: {id:"", productName: "", description: "", price: "", sku: "", ratings:"", updateProduct:false, errors:{}, currentHeader:"", message:""}
+    id:"", productName: "", description: "", price: "", sku: "", ratings:"", updateProduct:false, errors:{}, currentHeader:"", message:"", buttonText:""
 
 };
 
@@ -11,26 +11,37 @@ const productFormReducer = function(state = initialState, action) {
 
 
         case 'GET_PRODUCT_PROFILE':
-            return Object.assign({}, state, { product : action.product });
+            return Object.assign({}, initialState, {
+                id:action.product.id,
+                productName:action.product.name,
+                description:action.product.description,
+                price:action.product.price,
+                sku:action.product.sku,
+                ratings:action.product.ratings
+            });
 
 
         case 'ADD_PRODUCT':
-            return Object.assign({}, state, { product : action.product });
+            return Object.assign({}, initialState, {
+                updateProduct:false,
+                currentHeader:"Add a new Product",
+                buttonText:"Add"
+            });
 
 
         case 'GET_PRODUCT_PROFILE_EDIT':
-            const editProduct = Object.assign({}, initialState);
-            console.info("initial state",editProduct);
-            editProduct.productName=action.product.name;
-            editProduct.id=action.product.id;
-            editProduct.description=action.product.description;
-            editProduct.sku=action.product.sku;
-            editProduct.ratings=action.product.ratings;
-            editProduct.price=action.product.price;
-            editProduct.updateProduct=true;
-            editProduct.currentHeader="Update the Product";
-            editProduct.errors={};
-            return Object.assign({}, state, { product : editProduct });
+            return Object.assign({}, initialState, {
+                id:action.product.id,
+                productName:action.product.name,
+                description:action.product.description,
+                price:action.product.price,
+                sku:action.product.sku,
+                ratings:action.product.ratings,
+                errors:{},
+                updateProduct:true,
+                currentHeader:"Update the Product",
+                buttonText:"Update"
+            });
 
     }
 

@@ -19,19 +19,11 @@ export function getProductProfile(product,forEdit) {
 }
 
 
-export function addProduct(product) {
+export function addProduct() {
     return {
-        type: 'ADD_PRODUCT',
-        product
+        type: 'ADD_PRODUCT'
     };
 }
 
-
-export function editProduct(product) {
-    return {
-        type: 'EDIT_PRODUCT',
-        product
-    };
-}
 
 

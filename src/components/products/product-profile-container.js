@@ -21,7 +21,7 @@ const ProductProfileContainer = React.createClass({
 const mapStateToProps = function(store) {
 
     return {
-        product: store.productProfile.product
+        product: store.productProfile
     };
 };
 

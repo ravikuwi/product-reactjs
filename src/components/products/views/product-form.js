@@ -46,7 +46,7 @@ const ProductForm = React.createClass({
                         </label>
                     </div>
                     <div className="form-controls">
-                       <button type="submit" className="submit btn btn-success btn-sm" >{this.props.getButtonText()}</button>
+                       <button type="submit" className="submit btn btn-success btn-sm" >{this.props.product.buttonText}</button>
                        <button type="reset" className="reset btn btn-danger btn-sm">Reset</button>
                     </div>
                 </form>

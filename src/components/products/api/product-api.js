@@ -7,8 +7,11 @@ import {getProductProfile, addProduct, editProduct} from '../actions/product-for
 export function getAllProducts() {
     return axios.get('http://localhost:8080/o/products/products/')
             .then(response => {
-                store.dispatch(getProductsSuccess(response.data));
                 return response.data;
+            })
+            .catch(error =>{
+                return error;
+
             });
 
 }
@@ -19,6 +22,10 @@ export function getProductById(productId,forEdit) {
         .then(response=>{
                 store.dispatch(getProductProfile(response.data,forEdit));
           return  response.data
+        })
+         .catch(error => {
+             console.info("Error in getting product", error);
+             return error;
         });
 }
 
@@ -44,10 +51,11 @@ export function updateProduct(product) {
 export function deleteProduct(productId) {
     return axios.delete('http://localhost:8080/o/products/products/' + productId).then(
         response=>{
-            store.dispatch(deleteProductSuccess(productId));
             return response;
         }
-    );
+    ).catch(error=>{
+          return error;
+    });
 }
 
 

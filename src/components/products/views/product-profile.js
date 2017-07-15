@@ -13,7 +13,7 @@ const ProductProfile = React.createClass({
                 <div className="product-detail">
                    <label>
                       <span className="product-label"> Name:</span>
-                      <span className="product-info"> {this.props.product.name}   </span>
+                      <span className="product-info"> {this.props.product.productName}   </span>
                    </label>
                 </div>
                 <div className="product-detail">
